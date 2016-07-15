@@ -5,7 +5,7 @@ MAINTAINER Krzysztof Kardasz <krzysztof@kardasz.eu>
 # Update system and install required packages
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN groupadd -r memcache && useradd -r -g memcache memcache
+RUN groupadd -r mailcatcher && useradd -r -g mailcatcher mailcatcher
 
 RUN \
     apt-get update && \
@@ -20,6 +20,8 @@ COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+USER mailcatcher
 
 EXPOSE 1080 1025
 
